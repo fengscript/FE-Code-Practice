@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div bind="{{name}}"></div>
+    <span bind="{{company}}"></span>
+    <script>
+      let obj = {
+        name: '',
+        company: '',
+      };
+
+      function watch(targetObj) {
+        obj = new Proxy(targetObj, {
+          set: function (target, property, value) {
+            document
+              .querySelectorAll(`[bind="{{${property}}}"]`)
+              .forEach((item) => {
+                item.innerText = value;
+              });
+          },
+        });
+      }
+
+      watch(obj);
+
+      obj.company = 'cmb';
+
+      setTimeout(() => (obj.name = 'young'), 1000);
+    </script>
+  </body>
+</html>
