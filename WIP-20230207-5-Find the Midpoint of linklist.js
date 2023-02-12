@@ -4,7 +4,6 @@
 // 要求：
 // 1. 不能通过size的长度来计算！比如先计算链表长度，然后循环链表时看index是否等于长度的中位数。当然把链表转成数组，再取数组的中位数来取到middle point也是一样的是通过size的长度计算的。
 
-
 const linklist1 = {
   head: {
     value: 1,
@@ -27,13 +26,16 @@ const linklist2 = {
         value: 3,
         next: {
           value: 4,
-          next: null,
+          next: {
+            value: 5,
+            next: null,
+          },
         },
       },
     },
   },
 };
 
-function findMidPoint (linklist) {
+function findMidPoint(linklist) {
   
 }
