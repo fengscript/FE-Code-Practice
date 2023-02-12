@@ -6,11 +6,11 @@
 
 const linklist1 = {
   head: {
-    value: 1,
+    index: 1,
     next: {
-      value: 2,
+      index: 2,
       next: {
-        value: 3,
+        index: 3,
         next: null,
       },
     },
@@ -19,15 +19,15 @@ const linklist1 = {
 
 const linklist2 = {
   head: {
-    value: 1,
+    index: 1,
     next: {
-      value: 2,
+      index: 2,
       next: {
-        value: 3,
+        index: 3,
         next: {
-          value: 4,
+          index: 4,
           next: {
-            value: 5,
+            index: 5,
             next: null,
           },
         },
@@ -37,5 +37,23 @@ const linklist2 = {
 };
 
 function findMidPoint(linklist) {
-  
+  let array = recursionObj(linklist.head);
+
+  while (array.length !== 1) {
+    array.shift();
+    array.pop();
+  }
+
+  function recursionObj(obj) {
+    if (obj.next !== null) {
+      return [obj.index].concat(recursionObj(obj.next));
+    } else {
+      return obj.index;
+    }
+  }
+
+  return array[0];
 }
+
+findMidPoint(linklist1);
+findMidPoint(linklist2);
