@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function insertToDiv(n) {
+        const before = "<div>";
+        const after = "</div>";
+        let temp = "";
+        for (let i = 0; i < n - 1; i++) {
+          temp += before;
+        }
+        temp += "<a>123</a>";
+        for (let i = 0; i < n - 1; i++) {
+          temp += after;
+        }
+
+        const div = document.createElement("div");
+        div.innerHTML = temp;
+        return div;
+      }
+
+      // const result = insertToDiv(5);
+      // console.log(result)
+
+      function insertToDiv2(n) {
+        const div = document.createElement("div");
+        if (n === 1) {
+          div.innerHTML = "<a>123</a>";
+          return div;
+        } else {
+          let temp = "<div>SLOT</div>";
+          for (let i = 0; i < n - 2; i++) {
+            temp = temp.replace("SLOT", `<div>SLOT</div>`);
+          }
+          temp = temp.replace("SLOT", `<a>123</a>`);
+          div.innerHTML = temp;
+          return div;
+        }
+      }
+    </script>
+  </body>
+</html>
