@@ -8,13 +8,43 @@
   <body>
     <script>
       function insertToDiv(n) {
+        const div = document.createElement("div");
+        if (n === 1) {
+          div.innerHTML = "<a>123</a>";
+          return div;
+        }
+        
+        let temp = "<div>SLOT</div>";
+        for (let i = 0; i < n - 2; i++) {
+          temp = temp.replace("SLOT", `<div>SLOT</div>`);
+        }
+        temp = temp.replace("SLOT", `<a>123</a>`);
+        div.innerHTML = temp;
+        return div;
+      }
+
+      function insertToDiv2(n) {
+        if (n === 1) {
+          const div = document.createElement("div");
+          div.innerHTML = "<a>123</a>";
+          return div;
+        } else {
+          const div = document.createElement("div");
+          div.appendChild(insertToDiv2(n - 1));
+          return div;
+        }
+      }
+
+      function insertToDiv3(n) {
         const before = "<div>";
         const after = "</div>";
         let temp = "";
         for (let i = 0; i < n - 1; i++) {
           temp += before;
         }
+
         temp += "<a>123</a>";
+
         for (let i = 0; i < n - 1; i++) {
           temp += after;
         }
@@ -24,24 +54,43 @@
         return div;
       }
 
-      // const result = insertToDiv(5);
-      // console.log(result)
+      // function insertToDiv2(n) {
+      //   let temp = "";
+      //   if (n === 1) {
+      //     temp += "<a>123</a>";
+      //     const div = document.createElement("div");
+      //     return (div.innerHTML = temp);
+      //   } else {
+      //     return `<div>${insertToDiv2(n - 1)}</div>`;
+      //   }
+      // }
 
-      function insertToDiv2(n) {
-        const div = document.createElement("div");
-        if (n === 1) {
-          div.innerHTML = "<a>123</a>";
-          return div;
-        } else {
-          let temp = "<div>SLOT</div>";
-          for (let i = 0; i < n - 2; i++) {
-            temp = temp.replace("SLOT", `<div>SLOT</div>`);
-          }
-          temp = temp.replace("SLOT", `<a>123</a>`);
-          div.innerHTML = temp;
-          return div;
-        }
-      }
+      // function insertToDiv2(n, currentDiv) {
+      //   if (n === 0) {
+      //     currentDiv.innerHTML = "<a>123</a>";
+      //     return currentDiv;
+      //   } else {
+      //     const div = document.createElement("div");
+      //     currentDiv && currentDiv.appendChild(div);
+      //     return insertToDiv2(n - 1, currentDiv || div);
+      //   }
+      // }
+
+      // function insertToDiv2(n) {
+      //   if (n === 0) {
+      //     const div = document.createElement("div");
+      //     div.innerHTML = "<a>123</a>";
+      //     return div;
+      //   } else {
+      //     return document.createElement("div").appendChild(insertToDiv2(n - 1));
+      //   }
+      // }
+
+      // function gen(arguments) {
+      //   return document
+      //     .createElement("div")
+      //     .appendChild(document.createElement("div"));
+      // }
     </script>
   </body>
 </html>
